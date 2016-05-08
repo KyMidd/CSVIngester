@@ -72,7 +72,7 @@ merged = inputA.merge(inputB, on='Site Code')
 merged = merged.merge(inputC, on='Site Code')
 merged.to_csv("output.csv", index=False)
 
-#inputs = ["/Users/kyler/Desktop/data/processed/data1.csv", "/Users/kyler/Desktop/data/processed/data2.csv", "/Users/kyler/Desktop/data/processed/data3.csv"]
+#inputs = ["data/processed/data1.csv", "data/processed/data2.csv", "data/processed/data3.csv"]
 
 
 """
@@ -89,7 +89,7 @@ for filename in inputs:
                 fieldnames.append(h)
 
 # Loop through rest of data and sort into proper fields
-with open("/Users/kyler/Desktop/data/out.csv", "w", encoding='utf8', newline="") as f:
+with open("data/out.csv", "w", encoding='utf8', newline="") as f:
     writer = csv.DictWriter(f, fieldnames, quoting=csv.QUOTE_MINIMAL)
     for filename in inputs:
         with open(filename, "r", encoding='utf8', newline="") as f:
@@ -101,13 +101,13 @@ with open("/Users/kyler/Desktop/data/out.csv", "w", encoding='utf8', newline="")
 """
 
 # Open dictionary files, import data into arrays
-with open('/Users/kyler/Desktop/data3.csv', 'rt', encoding='utf8') as f:
+with open('data3.csv', 'rt', encoding='utf8') as f:
     r = csv.reader(f)
     dict3 = {row[0]: row[1:] for row in r}
-with open('/Users/kyler/Desktop/data2.csv', 'rt', encoding='utf8') as f:
+with open('data2.csv', 'rt', encoding='utf8') as f:
    r = csv.reader(f)
     dict2 = {row[0]: row[1:] for row in r}
-with open('/Users/kyler/Desktop/data1.csv', 'rt', encoding='utf8') as f:
+with open('data1.csv', 'rt', encoding='utf8') as f:
     r = csv.reader(f)
     dict1 = OrderedDict((row[0], row[1:]) for row in r)
 
@@ -123,7 +123,7 @@ with open('WANOutput.csv', 'wt', encoding='utf8') as f:
         w.writerow([key] + value)
 
 # Create final output file with headers, then populate it
-with open('/Users/kyler/Desktop/WANOutput.csv', 'w', encoding='utf8', newline='') as outputFile:
+with open('WANOutput.csv', 'w', encoding='utf8', newline='') as outputFile:
     writer = csv.writer(outputFile, quoting=csv.QUOTE_MINIMAL)
     writer.writerow(['Site Code','Site Name','Site Type','Bandwidth','Circuit Type','Number of Users'])
     for row in combinedData:
